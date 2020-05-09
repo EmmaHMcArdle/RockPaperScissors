@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+header {
+    background: white;
+    padding: 50px;
+}
+
+header > h1 {
+    color: pink;
+    text-align: center;
+    font-family: cursive, sans-serif;
+}
+
+body {
+    background: pink;
+}
+
+.score-board {
+    padding: 10px;
+    font-size: 60px;
+    display: inline-block;
+}
+.choices > div {
+    display: inline-block;
+    padding-left: 50px;
+    margin-left: 0;
+    cursor: pointer;  
+}
+.choices > div > img {
+    height: 100px;
+    width: 100px;
+    display: inline;
+    border-radius: 10px;
+    border: 2px solid rgb(255, 68, 146);
+}
+
+.title {
+    display: inline-block;
+}
+
+.label {
+    display: inline;
+}
+
+.label > img {
+    height: 100px;
+    width: 100px;
+}
+
+.result {
+    font-size: 25px;
+    font-family: fantasy, sans-serif;
+}
+
+p {
+    padding: 10px;
+}
+
+button {
+    align-items: center;
+    height: 80px;
+    width: 1250px;
+}

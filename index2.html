@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors Game</title>
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8"/>
+    </head>
+<body>
+    <header>
+        <h1>Rock... Paper... Scissors... SHOOT!</h1>
+    </header>
+    <div class="score-board">
+        <div class="label">
+            <img src="/Users/emmamcardle/Pictures/Coding_Pics/Human.png" alt="">
+            Human</div>
+            <span id="user-score">0</span>:<span id="comp-score">0</span>
+            <div class="label">Computer
+                <img src="/Users/emmamcardle/Downloads/pngfuel.com.png" alt="">
+                </div>
+    </div>
+
+    <div class="result">
+        <p>Choose Wisely.</p>
+    </div>
+    
+    <div class="choices">
+        <div id="rock">
+            <img src="/Users/emmamcardle/Pictures/Coding_Pics/stone.png" alt="">
+        </div>
+        <div id="paper">
+            <img src="/Users/emmamcardle/Pictures/Coding_Pics/paper.png" alt="">
+        </div>
+        <div id="scissors">
+            <img src="/Users/emmamcardle/Pictures/Coding_Pics/Scissors.png" alt="">
+        </div>
+    </div>
+
+    <p id="action-message" style="display: none">You won this time.</p>
+
+    <button id="newGame" style="display: none">New Game</button>
+
+    <script>
+        let userScore = 0;
+        let compScore = 0;
+        let userScore_span = document.getElementById("user-score");
+        let compScore_span = document.getElementById("comp-score");
+        const result_div = document.querySelector(".result");
+        const action_p = document.getElementById("action-message");
+        const newButton = document.getElementById("newGame");
+        let playerSelection;
+        let computerSelection; 
+        let cancelled = false;
+
+        function computerPlay() {
+            const Choice = ["Rock", "Paper", "Scissors"];
+            const randomChoice = Choice[Math.floor(Math.random() 
+            * Choice.length)];
+            return randomChoice;
+            };
+
+        function game() { 
+                if (compScore < 5 && userScore < 5)
+                {
+                computerSelection = computerPlay();
+                playRound();
+                printFinalScore();
+                }
+                else {
+                    newButton.style.display = 'block';
+                    newButton.addEventListener('click', () => {
+                    document.location.reload();
+                });
+                }
+        };
+          
+
+        function printFinalScore () {
+            if(userScore === 5)
+            {
+                action_p.style.display = 'block';
+                action_p.innerHTML = "YOU ARE THE ULTIMATE WINNER";
+            }
+            else if (compScore == 5)
+            {
+                action_p.style.display = 'block';
+                action_p.innerHTML = "YOU ARE THE ULTIMATE LOSER";
+        }  
+    }  
+       
+        function win () {
+            userScore++;
+            userScore_span.innerHTML = userScore;
+            compScore_span.innerHTML = compScore;
+            result_div.innerHTML = playerSelection + " beats " + computerSelection + ". You won!";
+        };
+
+        function lose () {
+            compScore++;
+            compScore_span.innerHTML = compScore;
+            userScore_span.innerHTML = userScore;
+            result_div.innerHTML = computerSelection + " beats " + playerSelection + ". You lose!";
+        };
+
+        function tie () {
+            result_div.innerHTML = "You tied!";
+        };
+
+        const btn = document.querySelector('#scissors');
+        btn.addEventListener('click', () => {
+        playerSelection = 'Scissors';
+        game();
+        });
+       
+        const btn1 = document.querySelector('#paper');
+        btn1.addEventListener('click', () => {
+        playerSelection = 'Paper';
+        game();
+        });
+
+        const btn2 = document.querySelector('#rock');
+        btn2.addEventListener('click', () => {
+        playerSelection = 'Rock';
+        game();
+        });
+
+        function playRound() {
+            switch(playerSelection + computerSelection) {
+                case "PaperRock":
+                case "ScissorsPaper":
+                case "RockScissors":        
+                    win();
+                break;  
+                case "ScissorsRock":
+                case "PaperScissors":
+                case "RockPaper":
+                    lose();
+                break;
+                case "ScissorsScissors":
+                case "RockRock":    
+                case "PaperPaper":
+                    tie();  
+                break;            
+            }
+        };
+    </script>
+</body>
+</html>
